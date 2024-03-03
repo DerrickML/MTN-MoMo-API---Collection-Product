@@ -45,7 +45,7 @@ app.post('/create-api-user', async (req, res) => {
     };
     // Data payload for the API request
     const data = {
-        providerCallbackHost: 'https://6277-102-85-219-94.ngrok-free.app'  // Callback or redirect URL for the user
+        providerCallbackHost: 'https://6277-102-85-219-94.ngrok-free.app'  // replace with your Callback url
     };
 
     try {
