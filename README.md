@@ -27,14 +27,6 @@ Creates an API user on the MoMo platform. This endpoint generates a unique user 
 
 **Dependencies**: None.
 
-**Request Example**:
-
-```json
-{
-  "providerCallbackHost": "https://your-callback-url.com"
-}
-```
-
 **Response**: Returns the created user's ID and the response from the MoMo API.
 
 ##### 3. Get Created User (`GET /get-created-user/:userId`)
