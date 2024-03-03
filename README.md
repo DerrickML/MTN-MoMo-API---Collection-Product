@@ -1,4 +1,4 @@
-# MoMo API Node.js Server Documentation for the Collection Product
+# MoMo API Node.js Server-side for the Collection Product
 
 ## Introduction
 
