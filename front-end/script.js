@@ -82,6 +82,7 @@ document.getElementById('pay-button').addEventListener('click', async () => {
         const paymentResponse = await requestToPay(phone, amount, momoTokenId);
 
         console.log('Payment Reference id: ', paymentResponse.paymentRefId);
+        console.log('externalId: ', paymentResponse.externalId);
 
         if (paymentResponse.success) {
             messageElement.textContent = 'Payment successful!';

@@ -20,7 +20,7 @@ app.use(cors());  // Apply CORS to all routes for wider accessibility
 const momoHost = 'sandbox.momodeveloper.mtn.com';  // MoMo API host
 const momoTokenUrl = `https://${momoHost}/collection/token/`;  // Token endpoint
 const momoRequestToPayUrl = `https://${momoHost}/collection/v1_0/requesttopay`;  // Request to Pay endpoint
-const MOMO_SUBSCRIPTION_KEY = process.env.MOMO_SUBSCRIPTION_KEY; //Subscription key (Primary  or Secondary key) for MoMo API, ideally stored in .env file
+const MOMO_SUBSCRIPTION_KEY = process.env.MOMO_SUBSCRIPTION_KEY; //Subscription key (Primary  or Secondary key) for MoMo API, ideally stored in .env file. 
 
 // Home route - Simple check to confirm the server is running
 app.get('/', (req, res) => {
@@ -45,7 +45,7 @@ app.post('/create-api-user', async (req, res) => {
     };
     // Data payload for the API request
     const data = {
-        providerCallbackHost: 'https://6277-102-85-219-94.ngrok-free.app'  // replace with your Callback url
+        providerCallbackHost: 'https://525e-41-210-145-67.ngrok-free.app'  // replace with your Callback url
     };
 
     try {
@@ -127,10 +127,11 @@ app.post('/request-to-pay', async (req, res) => {
             return res.status(400).json({ error: 'MoMo token not available' });
         }
 
+        const externalId = uuidv4();
         const body = {
             amount: total,  // Total amount for the transaction
             currency: 'EUR',  // Currency for the transaction
-            externalId: uuidv4(),  // Unique ID for each transaction
+            externalId: externalId,  // Unique ID for each transaction
             payer: {
                 partyIdType: 'MSISDN',
                 partyId: phone,  // Phone number of the payer
@@ -157,7 +158,7 @@ app.post('/request-to-pay', async (req, res) => {
             }
         );
 
-        res.json({ momoResponse: momoResponse.data, success: true, paymentRefId: paymentRefId });  // Returns response from MoMo API
+        res.json({ momoResponse: momoResponse.data, success: true, paymentRefId: paymentRefId, externalId: externalId });  // Returns response from MoMo API
     } catch (error) {
         console.error('Error in processing payment request:', error);
         res.status(500).json({ error: `An error occurred: ${error.message}` });
