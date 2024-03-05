@@ -166,13 +166,16 @@ app.post('/request-to-pay', async (req, res) => {
 });
 
 // Endpoint: Get Request to Pay Transaction Status
-// This endpoint retrieves the status of a payment transaction using its reference ID.
+// This operation is used to get the status of a request to pay. X-Reference-Id that was passed in the post is used as reference to the request.
+// The Bearer Authentication Token generated using CreateAccessToken API Call use to make a payment request
 // It is useful for confirming the status of a transaction initiated by the `/request-to-pay` endpoint.
-app.get('/payment-status/:transactionId', async (req, res) => {
+app.get('/payment-status/:transactionId/:momoTokenId', async (req, res) => {
     const transactionId = req.params.transactionId;
+    const momoTokenId = req.params.momoTokenId;
     const apiUrl = `https://${momoHost}/collection/v1_0/requesttopay/${transactionId}`;
     const headers = {
         'Ocp-Apim-Subscription-Key': MOMO_SUBSCRIPTION_KEY,
+        Authorization: `Bearer ${momoTokenId}`,
         'X-Target-Environment': 'sandbox'
     };
 
