@@ -79,6 +79,12 @@ Sends a payment request to the MoMo API. This endpoint requires the total amount
 
 To start the server, run `npm start` or `node <server-file-name>.js` in the terminal. The server will listen on the port defined in the server file (default is 3001).
 
+### Environment
+
+The server and all endpoints are configured to run in the MoMo API sandbox environment. This is a test environment provided by MTN for development and testing purposes. It simulates the MoMo API's behavior without affecting live data or incurring actual transactions.
+
+**Note**: The sandbox environment is for testing only. To move to production, you will need to configure the endpoints with production URLs and obtain production credentials.
+
 ## Front-End
 
 The front-end is a simple HTML/CSS/JavaScript application for testing the payment process. It allows users to input the phone number and amount, then handles the full process: API user creation, user retrieval, API key retrieval, MoMo token generation, and finally, making the payment request.
